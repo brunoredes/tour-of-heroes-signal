@@ -2,6 +2,7 @@ import { UpperCasePipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../hero';
+import { HEROES } from '../mock-heroes';
 
 @Component({
   selector: 'toh-heroes',
@@ -11,8 +12,9 @@ import { Hero } from '../hero';
   styleUrl: './heroes.component.scss',
 })
 export class HeroesComponent {
-  hero = signal<Hero>({
-    id: 1,
-    name: 'Windstorm',
-  });
+  heroes = signal(HEROES);
+  selectedHero?: Hero;
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
 }
